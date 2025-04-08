@@ -1,3 +1,159 @@
-git add index.html
-git commit -m "Edytowana zawartość strony"
-git push
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>40. Urodziny Mamy</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #a8edea, #dfffd6);
+      color: #333;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    header {
+      background-color: #ffffffbb;
+      padding: 2rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      color: #3dbda7;
+    }
+    .content {
+      padding: 2rem;
+    }
+    .gallery {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+    .gallery img {
+      width: 400px;
+      max-width: 90%;
+      border-radius: 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .names {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .message {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      background: #e8fdfd;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .countdown {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      color: #1b8f72;
+    }
+    footer {
+      margin-top: 3rem;
+      padding: 1rem;
+      background-color: #ffffff66;
+      font-size: 0.9rem;
+    }
+    .hearts-wrapper {
+      position: relative;
+      height: 150px;
+      margin-top: 2rem;
+    }
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-color: red;
+      clip-path: polygon(50% 0%, 100% 35%, 82% 100%, 50% 80%, 18% 100%, 0 35%);
+      animation: float 5s infinite ease-in-out;
+      opacity: 0.8;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-60px) scale(1.2); }
+      100% { transform: translateY(0) scale(1); }
+    }
+    .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 30%; animation-delay: 1s; }
+    .heart:nth-child(3) { left: 50%; animation-delay: 2s; }
+    .heart:nth-child(4) { left: 70%; animation-delay: 3s; }
+    .heart:nth-child(5) { left: 90%; animation-delay: 4s; }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/08/28/audio_efb6ae3b45.mp3" type="audio/mpeg">
+      </audio>
+
+  <header>
+    <h1>Wszystkiego najlepszego, Mamo!</h1>
+    <p>Świętujemy Twoje 40. urodziny!</p>
+  </header>
+
+  <div class="content">
+    <div class="message">
+      <p>Dziękujemy Ci za Twoją miłość, troskę i ciepło każdego dnia. Zasługujesz na wszystko, co najlepsze! Niech ten dzień będzie wyjątkowy – tak jak Ty!</p>
+    </div>
+
+    <div class="gallery">
+      <img src="https://source.unsplash.com/400x300/?family,love" alt="Rodzina">
+      <div class="names">
+        <p>Patryk ❤️</p>
+        <p>Julita ❤️</p>
+        <p>Marcin ❤️</p>
+      </div>
+    </div>
+
+    <div class="hearts-wrapper">
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+      <div class="heart"></div>
+    </div>
+
+    <div class="countdown">
+      <p>Do imprezy zostało:</p>
+      <div id="timer"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 - Z miłością od Twojej rodziny</p>
+  </footer>
+
+  <script>
+    const countdown = () => {
+      const eventDate = new Date();
+      eventDate.setDate(eventDate.getDate() + 1);
+      eventDate.setHours(15, 0, 0, 0);
+
+      const now = new Date();
+      const diff = eventDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("timer").innerHTML =
+        `${days} dni, ${hours} godz., ${minutes} min, ${seconds} sek.`;
+    };
+
+    setInterval(countdown, 1000);
+    countdown();
+  </script>
+</body>
+</html>
